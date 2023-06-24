@@ -32,6 +32,7 @@ class RegisterController extends BaseController
 
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
+        $input['from_api'] = true;
         $user = User::create($input);
         $success['token'] =  $user->createToken('cinemas-portal')->plainTextToken;
         $success['name'] =  $user->name;
