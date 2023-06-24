@@ -21,7 +21,7 @@ class RegisterController extends BaseController
     public function register(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'username' => 'required|unique:users,username',
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required'
         ]);
@@ -35,7 +35,7 @@ class RegisterController extends BaseController
         $input['from_api'] = true;
         $user = User::create($input);
         $success['token'] =  $user->createToken('cinemas-portal')->plainTextToken;
-        $success['name'] =  $user->name;
+        $success['username'] =  $user->username;
 
         return $this->sendResponse($success, 'User register successfully.');
     }
@@ -48,10 +48,10 @@ class RegisterController extends BaseController
      */
     public function login(Request $request): JsonResponse
     {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])){
             $user = Auth::user();
             $success['token'] =  $user->createToken('cinemas-portal')->plainTextToken;
-            $success['name'] =  $user->name;
+            $success['username'] =  $user->username;
 
             return $this->sendResponse($success, 'User login successfully.');
         }

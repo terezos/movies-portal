@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function($table) {
             $table->boolean('from_api')->default(0);
+            $table->string('username')->unique();
         });
     }
 
