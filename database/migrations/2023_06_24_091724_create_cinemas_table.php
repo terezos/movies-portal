@@ -21,10 +21,11 @@ return new class extends Migration
             $table->string('address')->nullable(false);
             $table->string('telephone')->nullable(false);
             $table->string('image')->nullable();
+            $table->boolean('summer')->default(0);
             $table->string('webpage')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -79,6 +79,13 @@
                                             placeholder="Κωδικός IMDB" value="{{$movie->imdb_code}}"/>
                                 </div>
                             </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="date_start">Ξεκινάει να παίζεται</label>
+                                    <input type="date" id="date_start" disabled name="date_start" class="form-control"
+                                           placeholder="Ημερομηνία" value="{{$movie->date_start}}"/>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row mt-2">
@@ -89,8 +96,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-md-3 col-12 mx-auto mt-2">
                                 <div class="mb-1">
@@ -98,18 +103,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
-<script>
-    // tinymce.init({
-    //     selector: 'textarea#descrition', // Replace this CSS selector to match the placeholder element for TinyMCE
-    // });
-</script>
 @endsection

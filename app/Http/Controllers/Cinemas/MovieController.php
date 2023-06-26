@@ -43,22 +43,46 @@ class MovieController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function create()
     {
-        //
+        $cinemas = auth()->user()->cinemas;
+        return view('auth.cinemas.create_movie', compact('cinemas'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Application|Redirector|RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'timetable' => 'required',
+            'imdb_link' => 'required',
+            'cinema_id' => 'required|array',
+        ]);
+
+
+
+        if ($validator->validated()) {
+            $data = $request->except('_method', '_token');
+            $data['imdb_code'] = $this->findImdbCodeByLink($data['imdb_link']);
+            $cinemaIds = $data['cinema_id'];
+            unset($data['cinema_id']);
+
+            foreach ($cinemaIds as $cinemaId){
+                $data['cinema_id'] = (int)$cinemaId;
+                $data['type'] = 'Drama';
+                 Movie::create($data);
+            }
+
+            return redirect(route('movie.movies'))->with(['success' => 'Προσθέσατε επιτυχώς την ταινία!']);
+
+        }
     }
 
     /**
@@ -100,6 +124,7 @@ class MovieController extends Controller
             'title' => 'required',
             'timetable' => 'required',
             'imdb_link' => 'required',
+            'date_start' => 'required'
         ]);
 
         if ($validator->validated()) {
@@ -108,6 +133,7 @@ class MovieController extends Controller
             $data['imdb_code'] = $this->findImdbCodeByLink($data['imdb_link']);
 
             Movie::where('id', $movie->id)
+                ->where('cinema_id', $movie->cinema_id)
                 ->update($data);
         }
 

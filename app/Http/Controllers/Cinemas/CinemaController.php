@@ -8,8 +8,11 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CinemaController extends Controller
 {
@@ -54,7 +57,7 @@ class CinemaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cinema  $cinema
+     * @param Cinema $cinema
      * @return \Illuminate\Http\Response
      */
     public function show(Cinema $cinema)
@@ -65,7 +68,7 @@ class CinemaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cinema  $cinema
+     * @param Cinema $cinema
      * @return \Illuminate\Http\Response
      */
     public function edit(Cinema $cinema)
@@ -77,7 +80,7 @@ class CinemaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cinema  $cinema
+     * @param Cinema $cinema
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cinema $cinema)
@@ -88,11 +91,13 @@ class CinemaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cinema  $cinema
-     * @return \Illuminate\Http\Response
+     * @param Cinema $cinema
+     * @return Application|RedirectResponse|Redirector
      */
     public function destroy(Cinema $cinema)
     {
-        //
+        Cinema::destroy($cinema->id);
+        Session::flash('delete', "Διαγράψατε επιτυχώς την ταινία: " . $cinema->name);
+        return redirect(route('cinema.cinemas'));
     }
 }

@@ -16,6 +16,7 @@ class Movie extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'cinema_id',
         'title',
         'description',
         'timetable',
@@ -23,6 +24,8 @@ class Movie extends Model
         'imdb_link',
         'imdb_code',
         'rotten_tomatoes_link',
+        'date_start',
+        'type',
     ];
 
 
