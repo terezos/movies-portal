@@ -38,3 +38,10 @@ main > .container {
 .dropdown-toggle {
     outline: 0;
 }
+
+.form-control{
+    font-size: 0.8rem !important;
+}
+.form-label{
+    font-weight: bold !important;
+}

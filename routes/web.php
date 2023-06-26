@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -31,5 +32,30 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * Logout Routes
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+
+        Route::resource('cinema', \App\Http\Controllers\Cinemas\CinemaController::class,  [
+            'names' => [
+                'index'   =>   'cinema.cinemas',
+                'store'   =>   'cinema.store',
+                'edit'    =>   'cinema.edit',
+                'show'    =>   'cinema.show',
+                'update'  =>   'cinema.update',
+                'destroy' =>   'cinema.destroy',
+                'create'  =>   'cinema.create'
+            ]
+        ]);
+
+        Route::resource('movies', \App\Http\Controllers\Cinemas\MovieController::class,  [
+            'names' => [
+                'index'   =>   'movie.movies',
+                'store'   =>   'movie.store',
+                'edit'    =>   'movie.edit',
+                'show'    =>   'movie.show',
+                'update'  =>   'movie.update',
+                'destroy' =>   'movie.destroy',
+                'create'  =>   'movie.create'
+            ]
+        ]);
+
     });
 });

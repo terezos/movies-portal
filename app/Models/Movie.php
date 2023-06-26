@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cinema extends Model
+class Movie extends Model
 {
+
     use HasFactory;
 
     /**
@@ -15,22 +16,19 @@ class Cinema extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
         'description',
-        'address',
-        'telephone',
+        'timetable',
         'image',
-        'webpage',
+        'imdb_link',
+        'imdb_code',
+        'rotten_tomatoes_link',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
 
-    public function movies()
+    public function cinemas()
     {
-        return $this->hasMany(Movie::class, 'cinema_id');
+        return $this->hasMany(Cinema::class, 'cinema_id');
     }
 
 }
