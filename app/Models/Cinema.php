@@ -22,6 +22,7 @@ class Cinema extends Model
         'telephone',
         'image',
         'webpage',
+        'summer'
     ];
 
     public function user()

@@ -91,7 +91,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">
                                         <label class="form-label" for="date_start">Ξεκινάει να παίζεται</label>
-                                        <input  type="date" id="date_start" name="date_start" class="form-control"
+                                        <input  type="date" id="date_start" required name="date_start" class="form-control"
                                                 placeholder="Ημερομηνία" />
                                     </div>
                                 </div>

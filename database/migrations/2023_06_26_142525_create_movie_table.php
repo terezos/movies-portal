@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('rotten_tomatoes_link')->nullable();
             $table->string('imdb_code')->nullable();
             $table->date('date_start');
-            $table->boolean('status');
+            $table->boolean('status')->default(1);
             $table->timestamps();
 
             $table->foreign('cinema_id')->references('id')->on('cinemas')->onDelete('cascade');

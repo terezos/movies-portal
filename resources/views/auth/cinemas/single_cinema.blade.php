@@ -73,6 +73,15 @@
                                                 placeholder="Ιστοσελίδα" />
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="summer">Θερινό</label>
+                                        <select name="summer" id="summer" class="form-control">
+                                            <option value="1" @if($cinema->summer) selected @endif>ΝΑΙ</option>
+                                            <option value="0" @if(!$cinema->summer) selected @endif>ΟΧΙ</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row mt-2">

@@ -25,7 +25,8 @@ class Movie extends Model
         'imdb_code',
         'rotten_tomatoes_link',
         'date_start',
-        'type',
+        'genre',
+        'status'
     ];
 
 

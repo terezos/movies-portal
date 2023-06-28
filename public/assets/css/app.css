@@ -45,3 +45,7 @@ main > .container {
 .form-label{
     font-weight: bold !important;
 }
+
+.movies-table tbody td{
+    max-width: 200px;
+}

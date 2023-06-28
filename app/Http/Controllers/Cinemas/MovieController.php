@@ -76,7 +76,7 @@ class MovieController extends Controller
 
             foreach ($cinemaIds as $cinemaId){
                 $data['cinema_id'] = (int)$cinemaId;
-                $data['type'] = 'Drama';
+                $data['genre'] = 'Drama';
                  Movie::create($data);
             }
 

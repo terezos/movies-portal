@@ -15,7 +15,7 @@
                 {{session('success')}}
             </div>
         @endif
-
+        <a href="{{ route('cinema.create')}}" class="btn btn-secondary mb-3" ><i class="fa fa-plus" aria-hidden="true"></i> <span>Προσθήκη Κινηματογράφου</span></a>
         <div class="table-responsive">
             <table class="table">
                 <caption>Λίστα Κινηματογράφων</caption>

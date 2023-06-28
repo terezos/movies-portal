@@ -39,13 +39,15 @@
         @foreach($cinemasToReturn as $cinema)
             @if(!empty($moviePerCinema))
             <div class="table-responsive">
-                <table class="table">
+                <table class="table movies-table">
                     <h2><b>{{$cinema->name}}</b></h2>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Τίτλος</th>
                         <th scope="col">Πρόγραμμα</th>
+                        <th scope="col">Ξεκινάει</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Επιλογές</th>
                     </tr>
                     </thead>
@@ -56,16 +58,22 @@
                                 <th scope="row">{{ $key + 1 }}</th>
                                 <td> {{ $movie->title }}</td>
                                 <td>{{ $movie->timetable }}</td>
-                                <td style="display: flex"><a href="{{ route('movie.edit', ['movie' => $movie]) }}"
-                                                             class="btn btn-success mx-1"><i
-                                            class="fas fa-edit"></i></a>
-                                    <form method="POST" id="delete-form"
-                                          action="{{route('movie.destroy', ['movie' => $movie])}}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?');"
-                                                class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                    </form>
+                                <td>{{ $movie->date_start }}</td>
+                                <td>@if($movie->status) <span class="alert-success">ΕΝΕΡΓΟ</span> @else <span class="alert-danger">ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ</span> @endif</td>
+                                <td >
+                                    <div style="display: flex"  >
+                                        <a href="{{ route('movie.edit', ['movie' => $movie]) }}"
+                                           class="btn btn-success mx-1"><i
+                                                class="fas fa-edit"></i></a>
+                                        <form method="POST" id="delete-form"
+                                              action="{{route('movie.destroy', ['movie' => $movie])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="return confirm('Are you sure?');"
+                                                    class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+
                                 </td>
                             </tr>
                         @endforeach
