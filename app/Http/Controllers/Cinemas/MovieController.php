@@ -81,7 +81,6 @@ class MovieController extends Controller
             }
 
             return redirect(route('movie.movies'))->with(['success' => 'Προσθέσατε επιτυχώς την ταινία!']);
-
         }
     }
 

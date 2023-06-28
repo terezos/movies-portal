@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-sm-6">
                 </div>
-                @if(!empty($moviePerCinema))
+                @if(!empty($cinemasToReturn))
                 <div class="col-sm-6 text-end pb-1">
                     <a href="{{ route('movie.create')}}" class="btn btn-secondary" ><i class="fa fa-plus" aria-hidden="true"></i> <span>Προσθήκη Ταινίας</span></a>
                 </div>
