@@ -22,6 +22,7 @@ class MovieController extends Controller
      */
     public function index()
     {
+        $this->findImdbMovieById();
         $moviePerCinema = [];
         $cinemasToReturn = [];
         $cinemas = auth()->user()->cinemas;
@@ -155,5 +156,15 @@ class MovieController extends Controller
     private function findImdbCodeByLink(mixed $imdb_link)
     {
         return str_replace('tt', '', basename($imdb_link));
+    }
+
+    public function findImdbMovieById()
+    {
+        $config = new \Imdb\Config();
+        $config->language = 'GR';
+        $imdb = new \Imdb\Title(null, $config);
+
+        $imdb = new \Imdb\Calendar();
+        dd($imdb->upcomingReleases('GR'));
     }
 }
