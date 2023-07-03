@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\Cinemas\MovieController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,6 +56,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
                 'create'  =>   'movie.create'
             ]
         ]);
-
+        Route::get('/movie-search/{id}', [MovieController::class, 'findImdbMovieById'])->name('movie.search');
     });
 });

@@ -36,6 +36,13 @@
                         <form id="form-response" action="{{ route('movie.store') }}" method="POST">
                             @csrf
                             <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="searchMovie">Αναζήτηση με IMDB Κωδικό</label>
+                                        <input type="text" id="searchMovie"  class="form-control"
+                                                />
+                                    </div>
+                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="mb-1">
                                         <label class="form-label" for="title">*Τίτλος Ταινίας</label>
@@ -120,6 +127,18 @@
     </div>
 
     <script>
-
+        $('#searchMovie').on('change', function () {
+            let idOfMovie = $(this).val();
+            var url = '{{ route("movie.search", ":id") }}';
+            url = url.replace(':id', idOfMovie);
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(res) {
+                    console.log(res);
+                }
+            });
+        })
     </script>
 @endsection
