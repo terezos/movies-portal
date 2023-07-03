@@ -32,7 +32,7 @@ class Movie extends Model
 
     public function cinemas()
     {
-        return $this->hasMany(Cinema::class, 'cinema_id');
+        return $this->hasMany(Cinema::class, 'id','cinema_id');
     }
 
 }
